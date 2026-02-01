@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>A Special Question</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,20 +16,17 @@
 </div>
 
 <script>
-    // This function handles the redirect manually to ensure it fires
     function goToNo() {
         window.location.href = "no.html";
     }
 
     function startMove() {
-        // This 150ms delay is the "secret" to making it clickable
-        // If they click fast, the 'goToNo' function will trigger first.
+        // 150ms delay makes it possible but difficult to click!
         setTimeout(moveButton, 150);
     }
 
     function moveButton() {
         const btn = document.getElementById('noButton');
-        // Calculates random position within the screen boundaries
         const x = Math.random() * (window.innerWidth - btn.offsetWidth);
         const y = Math.random() * (window.innerHeight - btn.offsetHeight);
 
