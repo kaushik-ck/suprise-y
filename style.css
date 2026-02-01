@@ -13,75 +13,86 @@ body {
 
 .container {
     background: white;
-    padding: 2.5rem;
+    padding: 1.5rem;
+    width: 85%;
+    max-width: 400px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     z-index: 100;
 }
 
-h1 { color: #d63384; }
+h1 { color: #d63384; font-size: 1.5rem; }
 
 button {
-    padding: 15px 30px;
-    font-size: 1.1rem;
+    padding: 12px 25px;
+    font-size: 1rem;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     margin: 10px;
-    transition: transform 0.2s;
 }
 
 #yesButton { background-color: #ff4d6d; color: white; }
-#noButton { background-color: #6c757d; color: white; }
+#noButton { background-color: #6c757d; color: white; transition: none; }
 
-/* --- Success Page (yes.html) --- */
+/* --- Success Page --- */
 .success-body { background-color: #fce4ec; }
 
 .center-content {
     background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    padding: 15px;
     border-radius: 30px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
 .main-pic {
-    width: 250px;
+    width: 220px;
     height: auto;
     border-radius: 15px;
     border: 5px solid #ff4d6d;
     animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-.caption { color: #d63384; margin-top: 15px; font-size: 1.5rem; }
+.caption { color: #d63384; margin-top: 10px; font-size: 1.3rem; }
 
-/* --- Floating Loopy Pictures --- */
+/* --- Floating Images --- */
 .floating-img {
     position: absolute;
-    width: 160px;
+    width: 120px;
     height: auto;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     animation: floatAround 10s ease-in-out infinite;
     z-index: 50;
 }
 
-/* Positions snug to the center */
-.pos1 { top: 22%; left: 22%; animation-delay: 0s; }
-.pos2 { top: 22%; right: 22%; animation-delay: 2.5s; }
-.pos3 { bottom: 22%; left: 22%; animation-delay: 5s; }
-.pos4 { bottom: 22%; right: 22%; animation-delay: 7.5s; }
+/* Snug positions */
+.pos1 { top: 18%; left: 18%; animation-delay: 0s; }
+.pos2 { top: 18%; right: 18%; animation-delay: 2.5s; }
+.pos3 { bottom: 18%; left: 18%; animation-delay: 5s; }
+.pos4 { bottom: 18%; right: 18%; animation-delay: 7.5s; }
 
-/* --- No Page (no.html) --- */
+/* --- No Page --- */
 .no-body { background-color: #f0f0f0; }
-.sad-pic { width: 250px; border-radius: 15px; filter: grayscale(30%); border: 4px solid #6c757d; }
-.back-btn { background-color: #d63384; color: white; margin-top: 20px; }
+.sad-pic { width: 220px; border-radius: 15px; filter: grayscale(30%); border: 4px solid #6c757d; }
+.back-btn { background-color: #d63384; color: white; margin-top: 15px; }
 
-/* --- Animations --- */
+/* --- Mobile Specific Overrides --- */
+@media (max-width: 600px) {
+    .main-pic { width: 170px; }
+    .floating-img { width: 85px; }
+    .pos1, .pos2, .pos3, .pos4 { top: auto; bottom: auto; left: auto; right: auto; }
+    /* Position them manually closer for mobile viewport */
+    .pos1 { top: 10%; left: 5%; }
+    .pos2 { top: 10%; right: 5%; }
+    .pos3 { bottom: 12%; left: 5%; }
+    .pos4 { bottom: 12%; right: 5%; }
+}
+
 @keyframes floatAround {
     0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(50px, 40px) rotate(8deg); }
-    50% { transform: translate(-40px, 70px) rotate(-4deg); }
-    75% { transform: translate(30px, -50px) rotate(12deg); }
+    33% { transform: translate(30px, 40px) rotate(5deg); }
+    66% { transform: translate(-20px, -30px) rotate(-5deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
 }
 
