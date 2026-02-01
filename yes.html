@@ -2,24 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Millu Approved!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="success-body">
-    <div class="gallery-container">
-        <div class="floating-layer">
-            <img src="images/Picture 1.jpeg" class="floating-img pos1" alt="Pic 1">
-            <img src="images/Picture 2.jpeg" class="floating-img pos2" alt="Pic 2">
-            <img src="images/Picture 3.jpeg" class="floating-img pos3" alt="Pic 3">
-            <img src="images/Picture 4.jpeg" class="floating-img pos4" alt="Pic 4">
-        </div>
+<div class="collage-container">
+    <img src="images/Picture 1.jpeg" class="floating-img pos1" alt="Pic 1">
+    <img src="images/Picture 2.jpeg" class="floating-img pos2" alt="Pic 2">
+    <img src="images/Picture 3.jpeg" class="floating-img pos3" alt="Pic 3">
+    <img src="images/Picture 4.jpeg" class="floating-img pos4" alt="Pic 4">
 
-        <div class="center-content">
-            <img src="images/Picture 5.jpeg" class="main-pic" alt="Main Pic">
-            <h2 class="caption">Das right. Good choice, Millu approved!</h2>
-            <button class="back-btn" onclick="location.href='index.html'">Back to Home</button>
+    <div class="center-content">
+        <img src="images/Picture 5.jpeg" class="main-pic" alt="Main Pic">
+        <h2 class="caption">Das right. Good choice, Millu approved!</h2>
+        <div id="countdown-container">
+            <p>Countdown to our day:</p>
+            <div id="countdown">Loading...</div>
         </div>
+        <button class="back-btn" onclick="location.href='index.html'">Back</button>
     </div>
+</div>
+
+<script>
+    function updateCountdown() {
+        const now = new Date();
+        let targetDate = new Date(now.getFullYear(), 1, 14);
+        if (now > targetDate) { targetDate = new Date(now.getFullYear() + 1, 1, 14); }
+        const diff = targetDate - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / 1000 / 60) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+        document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
 </body>
 </html>

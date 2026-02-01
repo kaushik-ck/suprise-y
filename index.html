@@ -2,38 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Special Question</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="container">
-    <h1>Will you be my Valentine? ❤️</h1>
+<body class="index-body">
+<div class="heart-bg" id="heartBg"></div>
+
+<div class="main-card">
+    <div class="heart-icon">💝</div>
+    <h1>Will you be my Valentine?</h1>
     <div class="buttons">
         <button id="yesButton" onclick="location.href='yes.html'">Yes</button>
-        <button id="noButton" onmouseenter="startMove()" onclick="goToNo()">No</button>
+        <button id="noButton" onmouseover="handleNoHover()" onclick="location.href='no.html'">No</button>
     </div>
 </div>
 
 <script>
-    function goToNo() {
-        window.location.href = "no.html";
+    let yesScale = 1;
+    let noAttempts = 0;
+
+    function handleNoHover() {
+        const noBtn = document.getElementById('noButton');
+        const yesBtn = document.getElementById('yesButton');
+
+        if (noAttempts < 15) {
+            noAttempts++;
+            yesScale += 0.2;
+            yesBtn.style.transform = `scale(${yesScale})`;
+
+            // Random jump within the center of the screen
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        } else {
+            // After 5 jumps, it stops moving and stays clickable!
+            noBtn.style.backgroundColor = "#ff7878";
+        }
     }
 
-    function startMove() {
-        // 150ms delay makes it possible but difficult to click!
-        setTimeout(moveButton, 150);
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.getElementById('heartBg').appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
     }
-
-    function moveButton() {
-        const btn = document.getElementById('noButton');
-        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-
-        btn.style.position = 'fixed';
-        btn.style.left = x + 'px';
-        btn.style.top = y + 'px';
-    }
+    setInterval(createHeart, 300);
 </script>
 </body>
 </html>
