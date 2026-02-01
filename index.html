@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+        <button id="yesButton" onclick="location.href='yes.html'">Yes</button>
+        <button id="noButton" onmouseenter="startMove()" onclick="goToNo()">No</button>
+    </div>
+</div>
+
+<script>
+    // This function handles the redirect manually to ensure it fires
+    function goToNo() {
+        window.location.href = "no.html";
+    }
+
+    function startMove() {
+        // This 150ms delay is the "secret" to making it clickable
+        // If they click fast, the 'goToNo' function will trigger first.
+        setTimeout(moveButton, 150);
+    }
+
+    function moveButton() {
+        const btn = document.getElementById('noButton');
+        // Calculates random position within the screen boundaries
+        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+
+        btn.style.position = 'fixed';
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+    }
+</script>
+</body>
+</html>
